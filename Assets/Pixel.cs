@@ -5,16 +5,30 @@ using UnityEngine;
 public class Pixel : MonoBehaviour
 {
     MakePixels _mp;
+    FixedCameraScroll _camera;
 
     private void Start()
     {
         _mp = FindObjectOfType<MakePixels>();
+
+        _camera = FindObjectOfType<Camera>().GetComponent<FixedCameraScroll>();
+    }
+
+    void OnDisable()
+    {
+        print("script was removed");
+        _mp._pixels.Remove(GetComponent<Rigidbody>());
     }
 
     void FixedUpdate()
     {
+
         Rigidbody rb = GetComponent<Rigidbody>();
         AttractPixelsTowardsRB( _mp, rb, true, _mp._attractForce );
+
+        //// Force us to follow the camera
+        //transform.Translate(_camera.GetSpeed() * _camera._ScrollDirection * Time.deltaTime);
+
     }
 
     public static void AttractPixelsTowardsRB( MakePixels mp, Rigidbody attractTo, bool useRad, float force )
