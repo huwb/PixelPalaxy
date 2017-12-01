@@ -18,6 +18,14 @@ public class LevelGeneration : MonoBehaviour {
 		Vector3 newPos = spaceShip.position;
 		newPos.y = newPos.y + 10;
 		newObst.position = newPos;
+
+		if (Random.Range (0f, 1f) >= 0.75) {
+			Vector3 rotation = newObst.rotation.ToEulerAngles();
+			rotation.z = rotation.z + Random.Range(-7.5f, 7.5f);
+			newObst.rotation = Quaternion.Euler (rotation);
+		}
+
+
 	}
 		
 	// Update is called once per frame
