@@ -31,7 +31,7 @@ public class MakePixels : MonoBehaviour
                 inst.position = transform.position + new Vector3( x, y, 0f );
                 float hue = 0.5f + Mathf.Atan2( y, x ) / (Mathf.PI * 2f);
                 //Debug.Log( hue );
-                inst.GetComponent<Renderer>().material.color = Random.ColorHSV( hue, hue, 0.9f, 1f, 0.5f, 0.6f );
+                inst.GetComponent<Renderer>().material.color = Random.ColorHSV( hue, hue, 0.9f, 1f, 0.7f, 0.8f );
                 var rb = inst.GetComponent<Rigidbody>();
                 rb.useGravity = false;
                 //inst.parent = transform;
