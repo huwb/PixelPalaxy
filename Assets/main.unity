@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41921425, g: 0.4480284, b: 0.46619785, a: 1}
+  m_IndirectSpecularColor: {r: 0.4192142, g: 0.4480288, b: 0.46619815, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -636,7 +636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171869360
 GameObject:
@@ -836,9 +836,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9d277d8eb656f42a73317463028b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attractForce: 0.1
-  _attractRadius: 1.5
-  _charAttractForce: 1
+  _attractForce: 0.01
+  _attractRadius: 3
+  _charAttractForce: 0.5
   _pixelSize: 0.1
   _pixelPrefab: {fileID: 4049028988997520, guid: f65e62343086c614c989fa0c8d95cd5c,
     type: 2}
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b47177095bf984ca6ee585a5a2a438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 60
+  _force: 90
   _ConstantUpForce: 30
 --- !u!82 &1420392096
 AudioSource:
