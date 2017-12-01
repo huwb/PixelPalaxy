@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9d277d8eb656f42a73317463028b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attractForce: 0.01
+  _attractForce: 0.001
   _attractRadius: 3
   _charAttractForce: 0.5
   _pixelSize: 0.1
