@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Pixel : MonoBehaviour
 {
+	public float edgeDeathTimer = 1.75f;
+	public bool isDying = false;
+	public bool isDead = false;
+
+	float timer = 0f;
+
     MakePixels _mp;
     FixedCameraScroll _camera;
+
+	public void ResetDeathTimer(){
+		timer = 0f;
+		isDying = false;
+	}
 
     private void Start()
     {
@@ -29,6 +40,14 @@ public class Pixel : MonoBehaviour
         //// Force us to follow the camera
         //transform.Translate(_camera.GetSpeed() * _camera._ScrollDirection * Time.deltaTime);
 
+		if (isDying) {
+			timer = timer + Time.fixedDeltaTime;
+			if (timer >= edgeDeathTimer) {
+				isDead = true;
+				isDying = false;
+				gameObject.SetActive (false);
+			}
+		}
     }
 
     public static void AttractPixelsTowardsRB( MakePixels mp, Rigidbody attractTo, bool useRad, float force )

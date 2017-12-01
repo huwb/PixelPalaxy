@@ -124,6 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fba3c27eb195c4685affe97d9801cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edgeDeathTimer: 0.75
+  isDying: 0
+  isDead: 0
 --- !u!135 &135266119539208650
 SphereCollider:
   m_ObjectHideFlags: 1
