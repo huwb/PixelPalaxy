@@ -26,8 +26,12 @@ public class MakePixels : MonoBehaviour
             for( int j = 0; j < N; j++ )
             {
                 Transform inst = Instantiate( _pixelPrefab ) as Transform;
-                inst.position = transform.position + new Vector3( (i - N / 2) * _pixelSize, (j - N / 2) * _pixelSize, 0f );
-                inst.GetComponent<Renderer>().material.color = Random.ColorHSV( 0f, 1f, 0.25f, 1f, 1f, 1f );
+                float x = (i - N / 2) * _pixelSize;
+                float y = (j - N / 2) * _pixelSize;
+                inst.position = transform.position + new Vector3( x, y, 0f );
+                float hue = 0.5f + Mathf.Atan2( y, x ) / (Mathf.PI * 2f);
+                //Debug.Log( hue );
+                inst.GetComponent<Renderer>().material.color = Random.ColorHSV( hue, hue, 0.9f, 1f, 0.5f, 0.6f );
                 var rb = inst.GetComponent<Rigidbody>();
                 rb.useGravity = false;
                 //inst.parent = transform;
