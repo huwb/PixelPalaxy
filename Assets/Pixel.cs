@@ -45,8 +45,16 @@ public class Pixel : MonoBehaviour
 			if (timer >= edgeDeathTimer) {
 				isDead = true;
 				isDying = false;
-				gameObject.SetActive (false);
+
+				AudioSource audioPop = GetComponent<AudioSource> ();
+				audioPop.pitch = Random.Range(0.75f, 1.25f);
+				audioPop.Play ();
+					
 			}
+		}
+
+		if (isDead && !GetComponent<AudioSource>().isPlaying) {
+			gameObject.SetActive (false);
 		}
     }
 
