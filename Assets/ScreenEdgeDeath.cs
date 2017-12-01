@@ -19,7 +19,7 @@ public class ScreenEdgeDeath : MonoBehaviour {
         if(other.gameObject.GetComponent<Pixel>())
         {
 			other.gameObject.GetComponent<Pixel> ().isDying = true;
-            Debug.Log("A pixel is dying");
+            //Debug.Log("A pixel is dying");
         }
     }
 
@@ -28,7 +28,7 @@ public class ScreenEdgeDeath : MonoBehaviour {
 		if(other.gameObject.GetComponent<Pixel>() && !other.gameObject.GetComponent<Pixel> ().isDead)
 		{
 			other.gameObject.GetComponent<Pixel> ().ResetDeathTimer ();
-			Debug.Log("A pixel is alive");
+			//Debug.Log("A pixel is alive");
 		}
 	}
 }
