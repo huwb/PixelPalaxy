@@ -48,7 +48,8 @@
 			{
 				// sample the texture
 				fixed4 col = (fixed4)0.;
-				col += 1. - tex2D(_MainTex, 1.2*(i.uv - float2(0., _Time.w / 40.)));
+
+				col += 1. - tex2D(_MainTex, 1.2*(i.uv + float2(0., _Time.w / 80.)));
 				//col += 1. - tex2D(_MainTex, 1.5*(i.uv - float2(0.,_Time.w/20.)));
 				return col;
 			}

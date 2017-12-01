@@ -33,7 +33,9 @@ public class LevelGeneration : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		if (spaceShip.position.y >= maxYvalue + 5){ 
+        float distBetweenObs = 5f - Mathf.Min( 3f, Time.timeSinceLevelLoad * 0.03f );
+		if (spaceShip.position.y >= maxYvalue + distBetweenObs )
+        { 
 			SpawnNewObstacle ();
 			maxYvalue = spaceShip.position.y;
 		}
