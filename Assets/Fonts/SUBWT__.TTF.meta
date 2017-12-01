@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0b128f841d7309d438046816ba42bda3
+timeCreated: 1512139207
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Subway Ticker
+  fontNames:
+  - Subway Ticker
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
