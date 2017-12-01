@@ -25,5 +25,6 @@ public class UIController : MonoBehaviour {
 	void Update () {
 
 		health.text = "HEALTH: " + pixelCreationScript.getPixelCount ().ToString ();
-	}
+        health.text += "\t\tSCORE: " + pixelCreationScript.GetScore().ToString();
+    }
 }

@@ -14,6 +14,15 @@ public class MakePixels : MonoBehaviour
 
     public List<Rigidbody> _pixels = new List<Rigidbody>();
 
+    private int _score = 0;
+
+    public void AddToScore(int score)
+    {
+        _score += score;
+    }
+
+    public int GetScore() { return _score; }
+
 	public int getPixelCount(){
 		return _pixels.Count;
 	}
