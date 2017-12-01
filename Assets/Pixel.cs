@@ -27,7 +27,7 @@ public class Pixel : MonoBehaviour
 
     void OnDisable()
     {
-        print("script was removed");
+        //print("script was removed");
         _mp._pixels.Remove(GetComponent<Rigidbody>());
     }
 
