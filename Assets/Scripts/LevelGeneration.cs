@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour {
+    public Transform _ScoringObstacle;
 	public List<Transform> Obstacles = new List<Transform>();
 	public Transform spaceShip;
 	float maxYvalue = 0f;
@@ -25,6 +26,8 @@ public class LevelGeneration : MonoBehaviour {
 			newObst.rotation = Quaternion.Euler (rotation);
 		}
 
+        Transform newTrigger = Instantiate(_ScoringObstacle) as Transform;
+        newTrigger.position = newPos + Vector3.up * 1f;
 
 	}
 		

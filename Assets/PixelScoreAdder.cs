@@ -9,6 +9,7 @@ public class PixelScoreAdder : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _makePixels = GameObject.Find("PlayerCharacter").GetComponent<MakePixels>();
+        _pixelsBeenHit = new List<GameObject>();
 	}
 	
 	// Update is called once per frame

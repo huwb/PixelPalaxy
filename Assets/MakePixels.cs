@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MakePixels : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class MakePixels : MonoBehaviour
     public Transform _pixelPrefab;
 
     public List<Rigidbody> _pixels = new List<Rigidbody>();
+
+    public Text _gameOverText;
 
     private int _score = 0;
 
@@ -29,6 +33,8 @@ public class MakePixels : MonoBehaviour
 
 	void Start ()
     {
+        _gameOverText.enabled = false;
+
         int N = 10;
         for( int i = 0; i < N; i++ )
         {
@@ -52,5 +58,17 @@ public class MakePixels : MonoBehaviour
 	void FixedUpdate ()
     {
         Pixel.AttractPixelsTowardsRB( this, GetComponent<Rigidbody>(), false, _charAttractForce );
+
+
+        // Game over
+        if(getPixelCount() <= 0)
+        {
+            _gameOverText.enabled = true;
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                SceneManager.LoadScene("main");
+            }
+        }
 	}
 }
