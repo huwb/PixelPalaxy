@@ -18,11 +18,14 @@ public class MakePixels : MonoBehaviour
 
     public Text _gameOverText;
 
+	public AudioSource scoring;
+
     private int _score = 0;
 
     public void AddToScore(int score)
     {
         _score += score;
+		scoring.Play ();
     }
 
     public int GetScore() { return _score; }

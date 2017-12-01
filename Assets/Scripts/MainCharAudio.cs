@@ -16,6 +16,6 @@ public class MainCharAudio : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float volLerp = Mathf.InverseLerp(0.5f, 3.75f, ship.velocity.magnitude);
-		spaceship.volume = volLerp;
+		spaceship.volume = volLerp * 0.1f;
 	}
 }
