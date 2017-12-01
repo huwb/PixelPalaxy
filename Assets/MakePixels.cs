@@ -24,6 +24,8 @@ public class MakePixels : MonoBehaviour
                 Transform inst = Instantiate( _pixelPrefab ) as Transform;
                 inst.position = transform.position + new Vector3( (i - N / 2) * _pixelSize, (j - N / 2) * _pixelSize, 0f );
                 inst.GetComponent<Renderer>().material.color = Random.ColorHSV( 0f, 1f, 0.25f, 1f, 1f, 1f );
+                var rb = inst.GetComponent<Rigidbody>();
+                rb.useGravity = false;
                 //inst.parent = transform;
                 _pixels.Add( inst.GetComponent<Rigidbody>() );
             }
