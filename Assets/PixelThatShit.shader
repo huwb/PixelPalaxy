@@ -44,9 +44,15 @@
 				float2 newUV = i.uv;
 			
 				float2 targetRes = _ScreenParams.xy / 6.;
+				float2 inPixel = frac(i.uv*targetRes);
+				float2 nearEdge = min(inPixel, 1. - inPixel);
+				
 				newUV = newUV - frac(i.uv*targetRes) / targetRes + 0.5/ targetRes;
 				newUV = newUV - frac(i.uv * _ScreenParams.xy) / _ScreenParams.xy;
 				fixed4 col = tex2D(_MainTex, newUV);
+
+				//col *= pow(2.*min(nearEdge.y,nearEdge.x),.1);
+
 				return col;
 			}
 			ENDCG
