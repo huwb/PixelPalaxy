@@ -14,6 +14,10 @@ public class MakePixels : MonoBehaviour
 
     public List<Rigidbody> _pixels = new List<Rigidbody>();
 
+	public int getPixelCount(){
+		return _pixels.Count;
+	}
+
 	void Start ()
     {
         int N = 10;
