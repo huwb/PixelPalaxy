@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour {
 
-    enum GameplayState
+    public enum GameplayState
     {
         START_SCREEN,
         PLAYING,
@@ -22,6 +22,11 @@ public class GameplayManager : MonoBehaviour {
 
     private int _score = 0;
     private static GameplayState _gameplayState = GameplayState.START_SCREEN;
+
+    public GameplayState GetGameplayState()
+    {
+        return _gameplayState;
+    }
 
     private MakePixels _makePixels;
 
@@ -66,7 +71,7 @@ public class GameplayManager : MonoBehaviour {
     {
         _startText.enabled = false;
 
-        if (_makePixels.getPixelCount() <= 0)
+        if (_makePixels.GetHasSpawned() && _makePixels.getPixelCount() <= 0)
         {
             _gameplayState = GameplayState.DEAD;
         }

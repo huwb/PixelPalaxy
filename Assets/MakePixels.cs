@@ -16,13 +16,28 @@ public class MakePixels : MonoBehaviour
 
     public List<Rigidbody> _pixels = new List<Rigidbody>();
 
+    private bool _hasSpawned = false;
+    public bool GetHasSpawned()
+    {
+        return _hasSpawned;
+    }
+
+    private GameplayManager _gameplayManager;
+
     public int getPixelCount()
     {
         return _pixels.Count;
     }
 
-    void Start ()
+    void Start()
     {
+        _gameplayManager = GameObject.Find("LevelController").GetComponent<GameplayManager>();
+    }
+
+    void Spawn ()
+    {
+        _hasSpawned = true;
+
         int N = 10;
         for( int i = 0; i < N; i++ )
         {
@@ -45,6 +60,11 @@ public class MakePixels : MonoBehaviour
 	
 	void FixedUpdate ()
     {
+        if(!_hasSpawned && _gameplayManager.GetGameplayState() == GameplayManager.GameplayState.PLAYING)
+        {
+            Spawn();
+        }
+
         Pixel.AttractPixelsTowardsRB( this, GetComponent<Rigidbody>(), false, _charAttractForce );
 	}
 }
