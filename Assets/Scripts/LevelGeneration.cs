@@ -8,10 +8,22 @@ public class LevelGeneration : MonoBehaviour {
 	public Transform spaceShip;
 	float maxYvalue = 0f;
 
-	// Use this for initialization
-	void Start () {
-		maxYvalue = spaceShip.position.y;
-	}
+    private float distTravelled = 0f;
+
+
+    public Vector2 _ScrollDirection = new Vector3(0, -1);
+    public float _ScrollSpeed = 10f;
+
+    public float _ObstactleDespawnY = -5f;
+
+    private List<Transform> _activeObstacles = new List<Transform>();
+
+    private GameplayManager _gameplayManager;
+
+    // Use this for initialization
+    void Start () {
+        _gameplayManager = GameObject.Find("LevelController").GetComponent<GameplayManager>();
+    }
 
 	void SpawnNewObstacle(){
 		int random = Random.Range(0,  Obstacles.Count - 1);
@@ -29,15 +41,45 @@ public class LevelGeneration : MonoBehaviour {
         Transform newTrigger = Instantiate(_ScoringObstacle) as Transform;
         newTrigger.position = newPos + Vector3.up * 1f;
 
+        _activeObstacles.Add(newObst);
+        _activeObstacles.Add(newTrigger);
 	}
 		
 	// Update is called once per frame
 	void Update () {
+        if(_gameplayManager.GetGameplayState() != GameplayManager.GameplayState.PLAYING)
+        {
+            return;
+        }
+
+        distTravelled += (_ScrollSpeed * Time.deltaTime);
+
         float distBetweenObs = 5f - Mathf.Min( 3f, Time.timeSinceLevelLoad * 0.03f );
-		if (spaceShip.position.y >= maxYvalue + distBetweenObs )
+		if (distTravelled >= maxYvalue + distBetweenObs )
         { 
 			SpawnNewObstacle ();
-			maxYvalue = spaceShip.position.y;
+			maxYvalue = distTravelled;
 		}
-	}
+
+        List<Transform> toDestroy = new List<Transform>();
+
+        foreach(Transform t in _activeObstacles)
+        {
+            // Scroll the obstacles
+            t.Translate(_ScrollDirection * (_ScrollSpeed * Time.deltaTime));
+
+
+            // Clean up obstacles that have gone too far
+            if(t.position.y < _ObstactleDespawnY)
+            {
+                toDestroy.Add(t);
+            }
+        }
+        foreach(Transform t in toDestroy)
+        {
+            _activeObstacles.Remove(t);
+            Destroy(t.gameObject);
+        }
+
+    }
 }
