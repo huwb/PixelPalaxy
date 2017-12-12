@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class MakePixels : MonoBehaviour
 {
@@ -16,28 +16,13 @@ public class MakePixels : MonoBehaviour
 
     public List<Rigidbody> _pixels = new List<Rigidbody>();
 
-    public Text _gameOverText;
-
-	public AudioSource scoring;
-
-    private int _score = 0;
-
-    public void AddToScore(int score)
+    public int getPixelCount()
     {
-        _score += score;
-		scoring.Play ();
+        return _pixels.Count;
     }
 
-    public int GetScore() { return _score; }
-
-	public int getPixelCount(){
-		return _pixels.Count;
-	}
-
-	void Start ()
+    void Start ()
     {
-        _gameOverText.enabled = false;
-
         int N = 10;
         for( int i = 0; i < N; i++ )
         {
@@ -61,17 +46,5 @@ public class MakePixels : MonoBehaviour
 	void FixedUpdate ()
     {
         Pixel.AttractPixelsTowardsRB( this, GetComponent<Rigidbody>(), false, _charAttractForce );
-
-
-        // Game over
-        if(getPixelCount() <= 0)
-        {
-            _gameOverText.enabled = true;
-
-            if(Input.GetKey(KeyCode.Space))
-            {
-                SceneManager.LoadScene("main");
-            }
-        }
 	}
 }

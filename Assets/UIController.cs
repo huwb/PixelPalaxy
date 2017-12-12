@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour {
 
 	public MakePixels pixelCreationScript;
+    public GameplayManager gameplayManager;
 	public CanvasRenderer HealthText;
 
 	Text health;
@@ -25,6 +26,6 @@ public class UIController : MonoBehaviour {
 	void Update () {
 
 		health.text = "HEALTH: " + pixelCreationScript.getPixelCount ().ToString ();
-        health.text += "\t\tSCORE: " + pixelCreationScript.GetScore().ToString();
+        health.text += "\t\tSCORE: " + gameplayManager.GetScore().ToString();
     }
 }

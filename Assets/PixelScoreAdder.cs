@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PixelScoreAdder : MonoBehaviour {
     private List<GameObject> _pixelsBeenHit;
-    private MakePixels _makePixels;
+    private GameplayManager _gameplayManager;
 
 	// Use this for initialization
 	void Start () {
-        _makePixels = GameObject.Find("PlayerCharacter").GetComponent<MakePixels>();
+        _gameplayManager = GameObject.Find("LevelController").GetComponent<GameplayManager>();
         _pixelsBeenHit = new List<GameObject>();
 	}
 	
@@ -27,7 +27,7 @@ public class PixelScoreAdder : MonoBehaviour {
             }
         }
         _pixelsBeenHit.Add(other.gameObject);
-        _makePixels.AddToScore(10);
+        _gameplayManager.AddToScore(10);
 
     }
 }
