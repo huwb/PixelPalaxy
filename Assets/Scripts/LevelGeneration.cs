@@ -15,10 +15,13 @@ public class LevelGeneration : MonoBehaviour {
     public float _ScrollSpeed = 10f;
 
     public float _ObstactleDespawnY = -5f;
+    public float _ObstactleSpawnY = 8f;
 
     private List<Transform> _activeObstacles = new List<Transform>();
 
     private GameplayManager _gameplayManager;
+
+    private float _startTime = -1f;
 
     // Use this for initialization
     void Start () {
@@ -28,9 +31,8 @@ public class LevelGeneration : MonoBehaviour {
 	void SpawnNewObstacle(){
 		int random = Random.Range(0,  Obstacles.Count - 1);
 		Transform newObst = Instantiate (Obstacles [random]) as Transform;
-		Vector3 newPos = spaceShip.position;
-		newPos.y = newPos.y + 10;
-		newObst.position = newPos;
+
+		newObst.position = new Vector3(0,_ObstactleSpawnY,0);
 
 		if (Random.Range (0f, 1f) >= 0.75) {
 			Vector3 rotation = newObst.rotation.ToEulerAngles();
@@ -39,7 +41,7 @@ public class LevelGeneration : MonoBehaviour {
 		}
 
         Transform newTrigger = Instantiate(_ScoringObstacle) as Transform;
-        newTrigger.position = newPos + Vector3.up * 1f;
+        newTrigger.position = newObst.position + Vector3.up * 1f;
 
         _activeObstacles.Add(newObst);
         _activeObstacles.Add(newTrigger);
@@ -49,14 +51,20 @@ public class LevelGeneration : MonoBehaviour {
 	void Update () {
         if(_gameplayManager.GetGameplayState() != GameplayManager.GameplayState.PLAYING)
         {
+            _startTime = -1f;
             return;
         }
 
+        if(_startTime == -1f)
+        {
+            _startTime = Time.timeSinceLevelLoad;
+        }
         distTravelled += (_ScrollSpeed * Time.deltaTime);
 
-        float distBetweenObs = 5f - Mathf.Min( 3f, Time.timeSinceLevelLoad * 0.03f );
+        float distBetweenObs = 5f - Mathf.Min( 3f, (Time.timeSinceLevelLoad - _startTime) * 0.03f );
 		if (distTravelled >= maxYvalue + distBetweenObs )
-        { 
+        {
+            Debug.Log("Dist between obs: " + distBetweenObs);
 			SpawnNewObstacle ();
 			maxYvalue = distTravelled;
 		}
